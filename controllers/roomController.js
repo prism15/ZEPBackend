@@ -85,6 +85,7 @@ module.exports.getBookedRooms = async( req,res)=>{
 
 //We need to add booking cancled , or early left or successfully completed
 module.exports.getHistory = async(req,res)=>{
+  console.log("in history funcion.............");
   try{
     let date = new Date();
     let currentDate = date.getDate();

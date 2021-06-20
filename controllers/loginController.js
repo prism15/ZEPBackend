@@ -25,51 +25,51 @@ function verifyToken(req,res,next){
 const login = (req,res)=>{
     console.log("I am in log innnnn");
     
-    // const{
-    //     email:email,
-    //     password:password
-    // }= req.body;
-    // console.log("this is email",email)
-    // message = "Failed to login"
-    // admin.findOne({email:email},function(error,foundUser){
-    //     console.log("error before if",error);
-    //     console.log('this is user',foundUser);
-    //     if(error)
-    //     {
-    //         console.log(error);
-    //          res.json(error);
-    //     }
-    //     else
-    //     {
-    //         console.log(foundUser);
-    //         if(foundUser)
-    //         {
+    const{
+        email:email,
+        password:password
+    }= req.body;
+    console.log("this is email",email)
+    message = "Failed to login"
+    admin.findOne({email:email},function(error,foundUser){
+        console.log("error before if",error);
+        console.log('this is user',foundUser);
+        if(error)
+        {
+            console.log(error);
+             res.json(error);
+        }
+        else
+        {
+            console.log(foundUser);
+            if(foundUser)
+            {
                 
-    //             bcrypt.compare(password,foundUser.password,function(err,result){
-    //                 if(err)
-    //                 {
-    //                     console.log("this is error",err);
-    //                     res.json(err);
-    //                 }
-    //                 else{
-    //                     if(result)
-    //                     {
-    //                         let payload = {subject : foundUser._id}
-    //                         let token = jwt.sign(payload,'secretkey');
-    //                         res.send({token});
-    //                         //console.log(token);
-    //                         console.log('Access granted');
-    //                     }
-    //                     else{
-    //                         res.json('error')
-    //                     }
-    //                 }
-    //             })
-    //         }else{
-    //             res.json(message)
-    //         }
-    //     }
-    // })
+                bcrypt.compare(password,foundUser.password,function(err,result){
+                    if(err)
+                    {
+                        console.log("this is error",err);
+                        res.json(err);
+                    }
+                    else{
+                        if(result)
+                        {
+                            let payload = {subject : foundUser._id}
+                            let token = jwt.sign(payload,'secretkey');
+                            res.send({token});
+                            //console.log(token);
+                            console.log('Access granted');
+                        }
+                        else{
+                            res.json('error')
+                        }
+                    }
+                })
+            }else{
+                res.json(message)
+            }
+        }
+    })
     
 }
 
